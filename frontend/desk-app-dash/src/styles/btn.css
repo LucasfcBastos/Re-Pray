@@ -1,0 +1,28 @@
+li {
+    list-style: none;
+}
+
+li button {
+    border-radius: var(--numb-six);
+    border: 0px;
+    width: 10em;
+    height: 3em;
+    margin-left: -2em;
+}
+
+li button.btn_li {
+    background-color: transparent;
+    cursor: pointer;
+    color: var(--color-text);
+}
+
+li button.btn_li:hover {
+    background-color: var(--color-line);
+}
+
+li button.select,
+li button.select:hover {
+    border-radius: var(--numb-six);
+    background-color: var(--color-primary);
+    cursor: auto;
+}

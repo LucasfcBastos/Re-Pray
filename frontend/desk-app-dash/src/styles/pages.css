@@ -1,0 +1,14 @@
+aside {
+    position: fixed;
+    background-color: var(--color-theme);
+    max-width: 10em;
+    height: calc(100dvh - 3.75em);
+    padding-right: 1em;
+}
+
+main {
+    min-height: calc(100dvh - 3.75em);
+    width: calc(100% - 10em);
+    margin-left: 10em;
+    margin-top: 3.75em;
+}
