@@ -35,8 +35,20 @@ body {
 
 h1 {
     font-family: "Intel One Mono - Bold";
+}
+
+h2 {
+    font-family: "Intel One Mono - SemiBold";
+    color: var(--color-primary);
+}
+
+h1, h2 {
     margin: 0em;
     text-align: center;
+}
+
+input, button, textarea, select {
+    font-family: "Intel One Mono - Regular";
 }
 
 .bar-top {

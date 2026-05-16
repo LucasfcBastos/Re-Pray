@@ -1,0 +1,60 @@
+.camp {
+    margin-top: 3.78em;
+    width: 100%;
+    height: calc(100dvh - 3.78em);
+    align-content: center;
+    justify-items: center;
+}
+
+hr {
+    border: none;
+    border-top: var(--numb-one) solid var(--color-line);
+}
+
+.camp-form {
+    background-color: var(--color-theme);
+    padding: var(--numb-twenty-five);
+    border-radius: var(--numb-twelve);
+    border: var(--numb-one) solid var(--color-line);
+    display: flex;
+    flex-direction: column;
+    gap: var(--numb-twenty-five);
+    width: calc(100% - (var(--numb-twenty-five) * 4));
+    max-width: 22.5em;
+}
+
+label {
+    display: flex;
+    flex-direction: column;
+}
+
+select, textarea {
+    width: 100%;
+    background-color: var(--color-theme);
+    border: var(--numb-one) solid var(--color-line);
+    border-radius: var(--numb-twelve);
+    padding: var(--numb-twelve);
+    color: var(--color-text);
+    transition: all 0.3s ease;
+    resize: none;
+}
+
+textarea {
+    width: calc(100% - (var(--numb-twelve) * 2));
+}
+
+button.off {
+    border-radius: var(--numb-six);
+    padding: 1em;
+    background-color: var(--color-line);
+    border: 0px;
+    cursor: pointer;
+}
+
+button.on {
+    border-radius: var(--numb-six);
+    padding: 1em;
+    background-color: var(--color-primary);
+    border: 0px;
+    cursor: pointer;
+}

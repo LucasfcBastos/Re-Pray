@@ -1,12 +1,12 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
-import Page from "../pages/Landing";
+import PageForm from "../pages/ViewForm";
 
 export function AppRoutes() {
   return (
     <BrowserRouter>
         <Routes>
-            <Route path="/" element={<Page />} />
+            <Route path="/forms/viewform" element={<PageForm />} />
         </Routes>
     </BrowserRouter>
   );
