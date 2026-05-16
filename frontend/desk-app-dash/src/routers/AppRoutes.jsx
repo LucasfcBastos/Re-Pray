@@ -1,12 +1,12 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
-import Page from "../pages/Landing";
+import PageLogin from "../pages/Login";
 
 export function AppRoutes() {
   return (
     <BrowserRouter>
         <Routes>
-            <Route path="/" element={<Page />} />
+            <Route path="/" element={<PageLogin />} />
         </Routes>
     </BrowserRouter>
   );
