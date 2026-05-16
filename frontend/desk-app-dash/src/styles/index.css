@@ -35,6 +35,14 @@ body {
 
 h1 {
     font-family: "Intel One Mono - Bold";
+}
+
+h2 {
+    font-family: "Intel One Mono - SemiBold";
+    color: var(--color-primary);
+}
+
+h1, h2 {
     margin: 0em;
     text-align: center;
 }
@@ -52,4 +60,8 @@ h1 {
 .line-bar {
     border: none;
     border-bottom: var(--numb-one) solid var(--color-line);
+}
+
+input {
+    font-family: "Intel One Mono - Regular";
 }
