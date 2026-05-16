@@ -1,0 +1,55 @@
+@font-face {
+    font-family: "Intel One Mono - Bold";
+    src: url("../assets/font/IntelOneMono-Bold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Intel One Mono - SemiBold";
+    src: url("../assets/font/IntelOneMono-SemiBold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Intel One Mono - Regular";
+    src: url("../assets/font/IntelOneMono-Regular.ttf") format("truetype");
+}
+
+:root {
+    --numb-one: 0.0625em;
+    --numb-six: 0.375em;
+    --numb-twelve: 0.75em;
+    --numb-twenty-five: 1.5625em;
+
+    --color-background: #010101;
+    --color-text: #dfe4ea;
+    --color-theme: #161b21;
+    --color-primary: #ff7700;
+    --color-line: #52575d;
+}
+
+body {
+    margin: 0em;
+    background-color: var(--color-background);
+    color: var(--color-text);
+    font-family: "Intel One Mono - Regular";
+}
+
+h1 {
+    font-family: "Intel One Mono - Bold";
+    margin: 0em;
+    text-align: center;
+}
+
+.bar-top {
+    background-color: var(--color-theme);
+    padding: 0.5em 0.5em;
+    top: 0em;
+    width: calc(100% - 1em);
+    text-align: center;
+    position: fixed;
+    z-index: 1;
+}
+
+.line-bar {
+    border: none;
+    border-bottom: var(--numb-one) solid var(--color-line);
+}
