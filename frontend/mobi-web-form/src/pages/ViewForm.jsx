@@ -1,7 +1,15 @@
-import "../styles/form.css";
+import { useNavigate } from "react-router-dom";
 import { courses } from "../data/DbCourses";
+import "../styles/form.css";
 
 function ViewForm() {
+
+    const navigate = useNavigate();
+
+    function handleClick() {
+        navigate("/forms/formresponse");
+    }
+
     return (
         <div>
             <div className="bar-top">
@@ -48,7 +56,7 @@ function ViewForm() {
                         ></textarea>
                     </div>
                     <div style={{ display: "flex", justifyContent: "end" }}>
-                        <button type="submit" className="off">
+                        <button type="submit" className="off" onClick={handleClick}>
                             Enviar Pedido
                         </button>
                     </div>
