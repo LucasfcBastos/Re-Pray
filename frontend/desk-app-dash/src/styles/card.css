@@ -1,0 +1,19 @@
+.card {
+    background-color: var(--color-theme);
+    padding: var(--numb-twenty-five);
+    border-radius: var(--numb-twelve);
+    border: var(--numb-one) solid var(--color-line);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card p {
+    margin: 0em;
+}
+
+.card h1 {
+    text-align: start;
+    position: sticky;
+    bottom: 0em;
+}

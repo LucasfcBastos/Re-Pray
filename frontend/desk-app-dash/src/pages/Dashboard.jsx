@@ -1,4 +1,5 @@
 import LiButton from "../components/LiButton";
+import Cards from "../components/Cards";
 import "../styles/pages.css";
 
 function Dashboard() {
@@ -21,6 +22,11 @@ function Dashboard() {
                 </div>
             </aside>
             <main>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1em", marginBottom: "1.5em" }}>
+                    <Cards children={"Total de Novos Pedidos"} numb="1" />
+                    <Cards children={"Total de Pedidos não Respondido"} numb="8" />
+                    <Cards children={"Total de Pedidos Enviados"} numb="10" />
+                </div>
             </main>
         </div>
     );

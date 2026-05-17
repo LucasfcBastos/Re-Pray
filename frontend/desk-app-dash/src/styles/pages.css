@@ -7,8 +7,9 @@ aside {
 }
 
 main {
-    min-height: calc(100dvh - 3.75em);
-    width: calc(100% - 10em);
+    min-height: calc(100dvh - (3.75em + (3.125em * 2)));
+    width: calc(100% - (10em + (3.125em * 2)));
     margin-left: 10em;
     margin-top: 3.75em;
+    padding: 3.125em;
 }
