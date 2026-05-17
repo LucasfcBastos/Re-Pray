@@ -22,7 +22,7 @@ function Dashboard() {
                 </div>
             </aside>
             <main>
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1em", marginBottom: "1.5em" }}>
+                <div className="camp-cards">
                     <Cards children={"Total de Novos Pedidos"} numb="1" />
                     <Cards children={"Total de Pedidos não Respondido"} numb="8" />
                     <Cards children={"Total de Pedidos Enviados"} numb="10" />

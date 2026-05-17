@@ -1,6 +1,6 @@
+import { QRCodeSVG } from 'qrcode.react';
 import LiButton from "../components/LiButton";
 import "../styles/pages.css";
-
 
 function QrCode() {
     return (
@@ -22,6 +22,21 @@ function QrCode() {
                 </div>
             </aside>
             <main>
+                <div className='camp-field qrcode'>
+                    <div>
+                        <h2>Código QR</h2>
+                        <hr />
+                    </div>
+                    <div style={{width: "100%", height: "100%", alignContent: "center", textAlign: "center"}}>
+                        <QRCodeSVG 
+                            value="https://google.com" 
+                            size={225}
+                            bgColor={"var(--color-theme)"}
+                            fgColor={"var(--color-text)"}
+                            level={"L"}
+                        />
+                    </div>
+                </div>
             </main>
         </div>
     );

@@ -1,6 +1,14 @@
+import { useNavigate } from "react-router-dom";
 import "../styles/form.css";
 
 function Login() {
+
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        navigate("/dashboard");
+    };
+
     return (
         <div>
             <div className="bar-top">
@@ -35,7 +43,7 @@ function Login() {
                         ></input>
                     </div>
                     <div style={{ display: "flex", justifyContent: "end" }}>
-                        <button type="submit" className="on">
+                        <button type="submit" className="on" onClick={handleClick}>
                             Entrar no Sistema
                         </button>
                     </div>

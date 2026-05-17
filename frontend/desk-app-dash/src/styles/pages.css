@@ -7,9 +7,49 @@ aside {
 }
 
 main {
-    min-height: calc(100dvh - (3.75em + (3.125em * 2)));
-    width: calc(100% - (10em + (3.125em * 2)));
+    min-height: calc(100dvh - (3.75em + (var(--numb-fifty) * 2)));
+    width: calc(100% - (10em + (var(--numb-fifty) * 2)));
     margin-left: 10em;
     margin-top: 3.75em;
-    padding: 3.125em;
+    padding: var(--numb-fifty);
+    transition: 0.1s;
+}
+
+.camp-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1em;
+    margin-bottom: 1.5em;
+}
+
+.camp-field {
+    background-color: var(--color-theme);
+    padding: var(--numb-twenty-five);
+    border-radius: var(--numb-twelve);
+    border: var(--color-line) solid var(--numb-one);
+}
+
+.camp-field.qrcode {
+    max-width: 25%;
+    min-width: 15em;
+    height: calc(100dvh - (3.9em + (var(--numb-fifty) * 3)));
+    display: flex;
+    flex-direction: column;
+    align-items: center
+}
+
+@media (max-width: 775px) {
+    main {
+        min-height: calc(100dvh - (3.75em + (var(--numb-twenty-five) * 2)));
+        width: calc(100% - (10em + (var(--numb-twenty-five) * 2)));
+        padding: var(--numb-twenty-five);
+    }
+
+    .camp-cards {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .camp-field.qrcode {
+        height: calc(100dvh - (3.9em + (var(--numb-twenty-five) * 4)));
+    }
 }

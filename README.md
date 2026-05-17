@@ -18,7 +18,9 @@ cd frontend/
 
 cd desk-app-dash/
 
-npm install react-router-dom electron concurrently
+npm install react-router-dom
+
+npm install electron concurrently wait-on electron-builder qrcode.react --save-dev
 
 npm run dev
 
@@ -32,3 +34,4 @@ npm run dev
 | | **Utilitários** | `concurrently` | Executa vários comandos simultaneamente |
 | | **Utilitários** | `wait-on` | Aguarda a inicialização de serviços/portas antes de rodar outro comando |
 | | **Build** | `electron-builder` | Empacota e gera o aplicativo executável final |
+| | **A** | `qrcode.react` | A |
