@@ -29,21 +29,21 @@ main {
     border: var(--color-line) solid var(--numb-one);
 }
 
-.pageQR-camp {
+.camp-limit {
     display: flex;
     gap: var(--numb-fifty);
     width: 100%;
 }
 
 .camp-field.pdf,
-.camp-field.qrcode {
+.camp-field.full {
     min-width: 14em;
-    height: calc(100dvh - (3.9em + (var(--numb-fifty) * 3)));
+    min-height: calc(100dvh - (3.9em + (var(--numb-fifty) * 3)));
     flex-direction: column;
     align-items: center;
 }
 
-.camp-field.qrcode {
+.camp-field.full {
     width: 100%;
 }
 

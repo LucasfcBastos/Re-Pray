@@ -1,7 +1,12 @@
 import LiButton from "../components/LiButton";
+import ListTable from "../components/ListTable";
 import "../styles/pages.css";
 
 function Prays() {
+
+    const info = [
+    ];
+
     return (
         <div>
             <div className="bar-top line-bar">
@@ -21,6 +26,15 @@ function Prays() {
                 </div>
             </aside>
             <main>
+                <div className='camp-limit'>
+                    <div className='camp-field full'>
+                        <div>
+                            <h2>Pedidos de Orações</h2>
+                            <hr />
+                        </div>
+                        <ListTable info={info} />
+                    </div>
+                </div>
             </main>
         </div>
     );

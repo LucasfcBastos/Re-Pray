@@ -55,3 +55,7 @@ button.on {
     border: 0px;
     cursor: pointer;
 }
+
+button.on:hover {
+    color: var(--color-text);
+}

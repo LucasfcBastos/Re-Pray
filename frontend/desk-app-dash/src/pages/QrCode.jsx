@@ -23,8 +23,8 @@ function QrCode() {
                 </div>
             </aside>
             <main>
-                <div className='pageQR-camp'>
-                    <div className='camp-field qrcode'>
+                <div className='camp-limit'>
+                    <div className='camp-field full'>
                         <div>
                             <h2>Código QR</h2>
                             <hr />
