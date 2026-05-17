@@ -1,4 +1,5 @@
-import { QRCodeSVG } from 'qrcode.react';
+import { QRCodeCanvas } from 'qrcode.react';
+import { generateQrPDF } from "../services/pdfGenerator";
 import LiButton from "../components/LiButton";
 import "../styles/pages.css";
 
@@ -22,19 +23,47 @@ function QrCode() {
                 </div>
             </aside>
             <main>
-                <div className='camp-field qrcode'>
-                    <div>
-                        <h2>Código QR</h2>
-                        <hr />
+                <div className='pageQR-camp'>
+                    <div className='camp-field qrcode'>
+                        <div>
+                            <h2>Código QR</h2>
+                            <hr />
+                        </div>
+                        <div style={{width: "100%", height: "100%", alignContent: "center", textAlign: "center"}}>
+                            <QRCodeCanvas 
+                                value="https://google.com" 
+                                size={225}
+                            />
+                        </div>
                     </div>
-                    <div style={{width: "100%", height: "100%", alignContent: "center", textAlign: "center"}}>
-                        <QRCodeSVG 
-                            value="https://google.com" 
-                            size={225}
-                            bgColor={"var(--color-theme)"}
-                            fgColor={"var(--color-text)"}
-                            level={"L"}
-                        />
+                    <div className='camp-field pdf'>
+                        <div>
+                            <h2>Baixar PDF</h2>
+                            <hr />
+                        </div>
+                        <div style={{width: "100%", height: "100%", alignContent: "center", textAlign: "center"}}>
+                            <div style={{
+                                display: "flex",
+                                flexDirection: "column",
+                                gap: "1em"
+                            }}>
+                                <button onClick={() => generateQrPDF(1)} className='on'>
+                                    1 QR por folha
+                                </button>
+
+                                <button onClick={() => generateQrPDF(2)} className='on'>
+                                    2 QR por folha
+                                </button>
+
+                                <button onClick={() => generateQrPDF(4)} className='on'>
+                                    4 QR por folha
+                                </button>
+
+                                <button onClick={() => generateQrPDF(8)} className='on'>
+                                    8 QR por folha
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </main>
