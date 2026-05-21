@@ -23,9 +23,9 @@ function Dashboard() {
             </aside>
             <main>
                 <div className="camp-cards">
-                    <Cards children={"Total de Novos Pedidos"} numb="1" />
-                    <Cards children={"Total de Pedidos não Respondido"} numb="8" />
-                    <Cards children={"Total de Pedidos Enviados"} numb="10" />
+                    <Cards children={"Total de Novos Pedidos"} numb="0" />
+                    <Cards children={"Total de Pedidos não Respondido"} numb="0" />
+                    <Cards children={"Total de Pedidos Enviados"} numb="0" />
                 </div>
             </main>
         </div>

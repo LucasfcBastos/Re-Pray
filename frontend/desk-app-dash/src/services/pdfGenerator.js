@@ -1,6 +1,6 @@
 import jsPDF from "jspdf";
 
-function drawCard(pdf, imgData, x, y, w, h, rotate = false) {
+function drawCard(pdf, imgData, x, y, w, h, rotate) {
 
     // borda
     pdf.setDrawColor(0);
@@ -13,21 +13,30 @@ function drawCard(pdf, imgData, x, y, w, h, rotate = false) {
     // reset linha
     pdf.setLineDashPattern([], 0);
 
-    const qrSize = w * 0.55;
+    const textSize = h * 0.10;
+
+    const titleX = x + (w / 2);
+    const titleYA = y + textSize + (h * 0.10);
+    const titleYB = y + textSize + (h * 0.15);
+
+    const qrSize = w * 0.60;
 
     const qrX = x + (w / 2) - (qrSize / 2);
-    const qrY = y + 25;
+    const qrY = y + (h / 2) - (qrSize / 2);
+
+    const labelX = x + (w / 2);
+    const labelY = (y + h) - ( textSize + (h * 0.10));
 
     // titulo
     pdf.setFont("helvetica", "normal");
-    pdf.setFontSize(16);
+    pdf.setFontSize(textSize);
 
-    if (!rotate) {
-        pdf.text("FAÇA SEU PEDIDO", x + w / 2, y + 10, {
+    if (rotate === true) {
+        pdf.text("FAÇA SEU PEDIDO", titleX, titleYA, {
             align: "center"
         });
 
-        pdf.text("DE ORAÇÃO", x + w / 2, y + 18, {
+        pdf.text("DE ORAÇÃO", titleX, titleYB, {
             align: "center"
         });
     }
@@ -42,15 +51,15 @@ function drawCard(pdf, imgData, x, y, w, h, rotate = false) {
         qrSize
     );
 
-    // texto inferior
-    pdf.setFontSize(10);
+    if (rotate === true) {
+        pdf.text(
+            "Capelania",
+            labelX,
+            labelY,
+            { align: "center" }
+        );
+    }
 
-    pdf.text(
-        "Capelania",
-        x + w / 2,
-        y + h - 10,
-        { align: "center" }
-    );
 }
 
 export async function generateQrPDF(option) {
@@ -96,14 +105,27 @@ export async function generateQrPDF(option) {
     };
 
     layouts[option].forEach((card) => {
-        drawCard(
-            pdf,
-            imgData,
-            card.x,
-            card.y,
-            card.w,
-            card.h
-        );
+        if (option === 2 && option === 8) {
+            drawCard(
+                pdf,
+                imgData,
+                card.x,
+                card.y,
+                card.w,
+                card.h,
+                false
+            );
+        } else {
+            drawCard(
+                pdf,
+                imgData,
+                card.x,
+                card.y,
+                card.w,
+                card.h,
+                true
+            );
+        }
     });
 
     pdf.save("re-pray-qrcode.pdf");
