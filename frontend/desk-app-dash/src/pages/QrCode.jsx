@@ -65,7 +65,7 @@ function QrCode() {
                             { id && (
                                 <QRCodeCanvas
                                     key={id}
-                                    value={`https://repray.vercel.app/forms/viewform/${id}`}
+                                    value={`https://re-pray.vercel.app/forms/viewform/${id}`}
                                     size={225}
                                 />
                             )}

@@ -1,9 +1,12 @@
 .camp {
     margin-top: 3.78em;
     width: 100%;
-    height: calc(100dvh - 3.78em);
-    align-content: center;
-    justify-items: center;
+    min-height: calc(100dvh - 3.78em);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    box-sizing: border-box;
 }
 
 hr {
