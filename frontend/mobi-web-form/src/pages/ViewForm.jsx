@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { courses } from "../data/DbCourses";
 import "../styles/form.css";
 
@@ -6,8 +6,10 @@ function ViewForm() {
 
     const navigate = useNavigate();
 
+    const { id } = useParams();
+
     function handleClick() {
-        navigate("/forms/formresponse");
+        navigate(`/forms/formresponse/${id}`);
     }
 
     return (
