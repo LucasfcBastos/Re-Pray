@@ -2,6 +2,19 @@
 
 # INSTALAÇÃO
 
+### Mobi-Web-Form
+
+React
+Vite
+Vercel
+
+## Backend
+
+FlaskAPI
+Render
+
+# INSTALAÇÃO
+
 ## Frontend
 
 ### Mobi-Web-Form

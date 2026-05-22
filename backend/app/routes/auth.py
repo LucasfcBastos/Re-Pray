@@ -30,9 +30,9 @@ def login():
     # BUSCA USUÁRIO
     response = (
         supabase
-        .table("usuarios")
+        .table("usuario")
         .select("*")
-        .eq("usuario", usuario)
+        .eq("nome", usuario)
         .execute()
     )
 
@@ -48,7 +48,7 @@ def login():
         supabase
         .table("dispositivo")
         .select("*")
-        .eq("id", user["id"])
+        .eq("id_references", user["id_references"])
         .execute()
     )
 
@@ -62,7 +62,7 @@ def login():
 
 
     # valida dispositivo
-    if dispositivo != device["id_computador"]:
+    if dispositivo != device["identificador"]:
         return jsonify({
             "erro": "Dispositivo não autorizado"
         }), 403
@@ -82,7 +82,7 @@ def login():
 
     # JWT
     token = create_access_token(
-        identity=str(user["id"])
+        identity=str(user["id_references"])
     )
 
 
@@ -91,9 +91,7 @@ def login():
         "token": token,
 
         "usuario": {
-            "id": user["id"],
-            "usuario": user["usuario"],
-            "nome": user["nome"]
+            "id": user["id_references"]
         }
 
     })
