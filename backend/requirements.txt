@@ -1,0 +1,13 @@
+python-dotenv
+supabase
+flask
+flask-cors
+
+
+
+pyjwt
+openai
+langchain
+langchain-openai
+requests
+gunicorn

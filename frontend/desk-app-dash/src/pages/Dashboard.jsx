@@ -17,7 +17,7 @@ function Dashboard() {
                 </ul>
                 <div style={{ position: "absolute", bottom: "0em" }}>
                     <ul>
-                        <LiButton href="/" styles="btn_logout" children="Sair" />
+                        <LiButton href="/" styles="btn_logout" children="Sair" logout={true} />
                     </ul>
                 </div>
             </aside>

@@ -1,4 +1,10 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import {
+    BrowserRouter,
+    Routes,
+    Route
+} from "react-router-dom";
+
+import PrivateRoute from "./PrivateRoute";
 
 import PageLogin from "../pages/Login";
 
@@ -8,16 +14,61 @@ import PageCode from "../pages/QrCode";
 import PageConfig from "../pages/Settings";
 
 export function AppRoutes() {
-  return (
-    <BrowserRouter>
-        <Routes>
-            <Route path="/" element={<PageLogin />} />
 
-            <Route path="/dashboard" element={<PageDash />} />
-            <Route path="/prays" element={<PagePrays />} />
-            <Route path="/qrcode" element={<PageCode />} />
-            <Route path="/settings" element={<PageConfig />} />
-        </Routes>
-    </BrowserRouter>
-  );
+    return (
+
+        <BrowserRouter>
+
+            <Routes>
+
+                {/* LOGIN */}
+                <Route
+                    path="/"
+                    element={<PageLogin />}
+                />
+
+                {/* DASHBOARD */}
+                <Route
+                    path="/dashboard"
+                    element={
+                        <PrivateRoute>
+                            <PageDash />
+                        </PrivateRoute>
+                    }
+                />
+
+                {/* PRAYS */}
+                <Route
+                    path="/prays"
+                    element={
+                        <PrivateRoute>
+                            <PagePrays />
+                        </PrivateRoute>
+                    }
+                />
+
+                {/* QR CODE */}
+                <Route
+                    path="/qrcode"
+                    element={
+                        <PrivateRoute>
+                            <PageCode />
+                        </PrivateRoute>
+                    }
+                />
+
+                {/* SETTINGS */}
+                <Route
+                    path="/settings"
+                    element={
+                        <PrivateRoute>
+                            <PageConfig />
+                        </PrivateRoute>
+                    }
+                />
+
+            </Routes>
+
+        </BrowserRouter>
+    );
 }
