@@ -20,4 +20,12 @@ def create_app():
         url_prefix="/auth"
     )
 
+    @app.route("/")
+    def home():
+
+        return {
+            "status": "online",
+            "api": "RE-PRAY"
+        }
+
     return app
