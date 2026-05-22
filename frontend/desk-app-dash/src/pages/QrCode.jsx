@@ -1,9 +1,41 @@
+import { useState, useEffect } from "react";
 import { QRCodeCanvas } from 'qrcode.react';
 import { generateQrPDF } from "../services/pdfGenerator";
 import LiButton from "../components/LiButton";
 import "../styles/pages.css";
 
 function QrCode() {
+
+    const [id, setId] = useState("");
+
+    useEffect(() => {
+
+        async function carregarInstituicao() {
+
+            const usuarioStorage = localStorage.getItem("usuario");
+
+            if (!usuarioStorage) return;
+
+            const usuario = JSON.parse(usuarioStorage);
+
+            const response = await fetch(
+                `http://127.0.0.1:5000/forms/instituicao/${usuario.id}`
+            );
+
+            if (!response.ok) {
+                console.error("Erro na API:", await response.text());
+                return;
+            }
+
+            const data = await response.json();
+
+            setId(data.id);
+        }
+
+        carregarInstituicao();
+
+    }, []);
+
     return (
         <div>
             <div className="bar-top line-bar">
@@ -30,10 +62,13 @@ function QrCode() {
                             <hr />
                         </div>
                         <div style={{width: "100%", height: "100%", alignContent: "center", textAlign: "center"}}>
-                            <QRCodeCanvas 
-                                value="https://google.com" 
-                                size={225}
-                            />
+                            { id && (
+                                <QRCodeCanvas
+                                    key={id}
+                                    value={`https://repray.vercel.app/forms/viewform/${id}`}
+                                    size={225}
+                                />
+                            )}
                         </div>
                     </div>
                     <div className='camp-field pdf'>

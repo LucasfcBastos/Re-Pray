@@ -9,8 +9,8 @@ export function AppRoutes() {
   return (
     <BrowserRouter>
         <Routes>
-            <Route path="/forms/viewform" element={<PageForm />} />
-            <Route path="/forms/formresponse" element={<PageResp />} />
+            <Route path="/forms/viewform/:id" element={<PageForm />} />
+            <Route path="/forms/formresponse/:id" element={<PageResp />} />
 
             <Route path="*" element={<PageNFound />} />
         </Routes>
