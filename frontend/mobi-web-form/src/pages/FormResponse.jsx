@@ -1,12 +1,14 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "../styles/form.css";
 
 function FormResponse() {
 
     const navigate = useNavigate();
 
+    const { id } = useParams();
+
     function handleClick() {
-        navigate("/forms/viewform");
+        navigate(`/forms/viewform/${id}`);
     }
 
     return (

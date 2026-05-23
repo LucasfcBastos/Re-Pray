@@ -35,3 +35,34 @@ def get_cursos():
     )
 
     return jsonify(response.data), 200
+
+@forms_bp.route("/pedidos", methods=["POST"])
+def criar_pedido():
+
+    data = request.json
+
+    id_references = data.get("id_references")
+    id_cursos = data.get("id_cursos")
+    descricao = data.get("descricao")
+
+    if not id_references or not id_cursos or not descricao:
+        return jsonify({
+            "erro": "Dados incompletos"
+        }), 400
+
+    response = (
+        supabase
+        .table("pedidos")
+        .insert({
+            "id_references": id_references,
+            "id_cursos": id_cursos,
+            "descricao": descricao,
+            "status": "aguardando"
+        })
+        .execute()
+    )
+
+    return jsonify({
+        "mensagem": "Pedido enviado com sucesso",
+        "data": response.data
+    }), 201
