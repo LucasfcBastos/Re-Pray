@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { courses } from "../data/DbCourses";
+import { useState, useEffect } from "react";
 import "../styles/form.css";
 
 function ViewForm() {
@@ -8,9 +8,37 @@ function ViewForm() {
 
     const { id } = useParams();
 
+    const [courses, setCourses] = useState([]);
+
     function handleClick() {
         navigate(`/forms/formresponse/${id}`);
     }
+
+    useEffect(() => {
+
+        async function carregarCursos() {
+
+            try {
+
+                const response = await fetch(
+                    "https://re-pray-api.onrender.com/forms/cursos"
+                );
+
+                const data = await response.json();
+
+                setCourses(data);
+
+            } catch (err) {
+
+                console.error("Erro ao carregar cursos:", err);
+
+            }
+
+        }
+
+        carregarCursos();
+
+    }, []);
 
     return (
         <div>
@@ -24,28 +52,28 @@ function ViewForm() {
                         <hr />
                     </div>
                     <div>
-                        <label for="curso" class="block text-sm font-medium text-slate-300 mb-2">
+                        <label htmlFor="curso">
                             Qual é o seu curso?
                         </label>
                         <select 
                             id="curso" 
                             name="curso" 
+                            defaultValue=""
                             required
-                            className="w-full bg-slate-800 border border-slate-600 rounded-lg px-4 py-3 text-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all appearance-none cursor-pointer"
                         >
-                            <option value="" disabled selected>
+                            <option value="" disabled>
                                 Selecione seu curso...
                             </option>
 
                             {courses.map((course) => (
-                                <option key={course.value} value={course.value}>
-                                    {course.label}
+                                <option key={course.id} value={course.id}>
+                                    {course.nome}
                                 </option>
                             ))}
                         </select>
                     </div>
                     <div>
-                        <label for="pedido" class="block text-sm font-medium text-slate-300 mb-2">
+                        <label htmlFor="pedido">
                             Faça o seu pedido de oração
                         </label>
                         <textarea 
@@ -54,7 +82,6 @@ function ViewForm() {
                             rows="5" 
                             required
                             placeholder="Escreva aqui o que está no seu coração..."
-                            class="w-full bg-slate-800 border border-slate-600 rounded-lg px-4 py-3 text-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none placeholder:text-slate-500"
                         ></textarea>
                     </div>
                     <div style={{ display: "flex", justifyContent: "end" }}>

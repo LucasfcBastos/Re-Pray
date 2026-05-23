@@ -1,16 +1,7 @@
 from flask import Blueprint, request, jsonify
-from flask_jwt_extended import (
-    create_access_token,
-    jwt_required,
-    get_jwt_identity
-)
-
-import bcrypt
-
 from app.database import supabase
 
 forms_bp = Blueprint("forms", __name__)
-
 
 @forms_bp.route("/instituicao/<user_id>", methods=["GET"])
 def get_instituicao(user_id):
@@ -31,3 +22,16 @@ def get_instituicao(user_id):
     info = response.data[0]
 
     return jsonify({ "id": info["id"] }), 200
+
+@forms_bp.route("/cursos", methods=["GET"])
+def get_cursos():
+
+    response = (
+        supabase
+        .table("cursos")
+        .select("id, nome")
+        .order("nome")
+        .execute()
+    )
+
+    return jsonify(response.data), 200
