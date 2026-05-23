@@ -11,7 +11,7 @@ class AuthService:
             bcrypt.gensalt()
         ).decode("utf-8")
 
-        response = supabase.table("usuarios").insert({
+        response = supabase.table("usuario").insert({
             "nome": nome,
             "email": email,
             "senha": senha_hash
@@ -22,7 +22,7 @@ class AuthService:
     @staticmethod
     def login(email, senha):
 
-        response = supabase.table("usuarios") \
+        response = supabase.table("usuario") \
             .select("*") \
             .eq("email", email) \
             .execute()
