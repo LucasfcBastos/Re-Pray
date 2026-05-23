@@ -13,6 +13,8 @@ function ViewForm() {
     const [cursoSelecionado, setCursoSelecionado] = useState("");
     const [descricao, setDescricao] = useState("");
 
+    const [enviando, setEnviando] = useState(false);
+
     const formularioValido = cursoSelecionado !== "" && descricao.trim() !== "";
 
     useEffect(() => {
@@ -43,10 +45,14 @@ function ViewForm() {
 
     async function handleClick() {
 
+        if (enviando) return;
+
         if (!formularioValido) {
             alert("Preencha o formulário corretamente");
             return;
         }
+
+        setEnviando(true);
 
         try {
 
@@ -69,6 +75,7 @@ function ViewForm() {
 
             if (!response.ok) {
                 alert(data.erro || "Erro ao enviar pedido");
+                setEnviando(false);
                 return;
             }
 
@@ -79,6 +86,8 @@ function ViewForm() {
             console.error(err);
 
             alert("Erro ao conectar com servidor");
+
+            setEnviando(false);
 
         }
 
@@ -159,8 +168,9 @@ function ViewForm() {
                             type="button"
                             className={formularioValido ? "on" : "off"}
                             onClick={handleClick}
+                            disabled={enviando}
                         >
-                            Enviar Pedido
+                            {enviando ? "Enviando..." : "Enviar Pedido"}
                         </button>
 
                     </div>

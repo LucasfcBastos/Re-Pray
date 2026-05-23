@@ -30,3 +30,26 @@ def get_pedidos(user_id):
         }), 200
     
     return jsonify(list.data), 200
+
+@orders_bp.route("/status/<id_pedido>", methods=["PUT"])
+def update_status(id_pedido):
+
+    response = (
+        supabase
+        .table("pedidos")
+        .update({
+            "status": "respondido"
+        })
+        .eq("id", id_pedido)
+        .execute()
+    )
+
+    if not response.data:
+        return jsonify({
+            "erro": "Pedido não encontrado"
+        }), 404
+
+    return jsonify({
+        "mensagem": "Pedido respondido com sucesso",
+        "pedido": response.data[0]
+    }), 200

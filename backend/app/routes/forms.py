@@ -50,6 +50,23 @@ def criar_pedido():
             "erro": "Dados incompletos"
         }), 400
 
+    pedido_existente = (
+        supabase
+        .table("pedidos")
+        .select("id, created_at")
+        .eq("id_references", id_references)
+        .eq("id_cursos", id_cursos)
+        .eq("descricao", descricao)
+        .order("created_at", desc=True)
+        .limit(1)
+        .execute()
+    )
+
+    if pedido_existente.data:
+        return jsonify({
+            "erro": "Pedido já enviado recentemente"
+        }), 409
+
     response = (
         supabase
         .table("pedidos")
