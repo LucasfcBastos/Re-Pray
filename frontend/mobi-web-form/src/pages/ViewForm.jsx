@@ -11,8 +11,9 @@ function ViewForm() {
     const [courses, setCourses] = useState([]);
 
     const [cursoSelecionado, setCursoSelecionado] = useState("");
-
     const [descricao, setDescricao] = useState("");
+
+    const formularioValido = cursoSelecionado !== "" && descricao.trim() !== "";
 
     useEffect(() => {
 
@@ -42,6 +43,11 @@ function ViewForm() {
 
     async function handleClick() {
 
+        if (!formularioValido) {
+            alert("Preencha o formulário corretamente");
+            return;
+        }
+
         try {
 
             const response = await fetch(
@@ -60,8 +66,6 @@ function ViewForm() {
             );
 
             const data = await response.json();
-
-            console.log(data);
 
             if (!response.ok) {
                 alert(data.erro || "Erro ao enviar pedido");
@@ -153,7 +157,7 @@ function ViewForm() {
 
                         <button
                             type="button"
-                            className="off"
+                            className={formularioValido ? "on" : "off"}
                             onClick={handleClick}
                         >
                             Enviar Pedido

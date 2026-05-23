@@ -9,8 +9,8 @@ def get_instituicao(user_id):
     response = (
         supabase
         .table("instituicoes")
-        .select("id")
-        .eq("id_references", user_id)
+        .select("id, nome")
+        .eq("id", user_id)
         .execute()
     )
 
@@ -21,7 +21,7 @@ def get_instituicao(user_id):
 
     info = response.data[0]
 
-    return jsonify({ "id": info["id"] }), 200
+    return jsonify(info), 200
 
 @forms_bp.route("/cursos", methods=["GET"])
 def get_cursos():
@@ -57,7 +57,7 @@ def criar_pedido():
             "id_references": id_references,
             "id_cursos": id_cursos,
             "descricao": descricao,
-            "status": "aguardando"
+            "status": "novo"
         })
         .execute()
     )

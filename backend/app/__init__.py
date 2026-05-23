@@ -5,6 +5,7 @@ from flask_jwt_extended import JWTManager
 from app.config import Config
 from app.routes.auth import auth_bp
 from app.routes.forms import forms_bp
+from app.routes.orders import orders_bp
 
 def create_app():
 
@@ -18,6 +19,7 @@ def create_app():
 
     app.register_blueprint( auth_bp, url_prefix="/auth" )
     app.register_blueprint( forms_bp, url_prefix="/forms" )
+    app.register_blueprint( orders_bp, url_prefix="/orders" )
 
     @app.route("/")
     def home():

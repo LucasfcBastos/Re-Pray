@@ -1,40 +1,12 @@
-import { useState, useEffect } from "react";
 import { QRCodeCanvas } from 'qrcode.react';
 import { generateQrPDF } from "../services/pdfGenerator";
 import LiButton from "../components/LiButton";
 import "../styles/pages.css";
 
 function QrCode() {
-
-    const [id, setId] = useState("");
-
-    useEffect(() => {
-
-        async function carregarInstituicao() {
-
-            const usuarioStorage = localStorage.getItem("usuario");
-
-            if (!usuarioStorage) return;
-
-            const usuario = JSON.parse(usuarioStorage);
-
-            const response = await fetch(
-                `http://127.0.0.1:5000/forms/instituicao/${usuario.id}`
-            );
-
-            if (!response.ok) {
-                console.error("Erro na API:", await response.text());
-                return;
-            }
-
-            const data = await response.json();
-
-            setId(data.id);
-        }
-
-        carregarInstituicao();
-
-    }, []);
+    
+    const usuarioStorage = localStorage.getItem("usuario");
+    const usuario = JSON.parse(usuarioStorage);
 
     return (
         <div>
@@ -62,10 +34,10 @@ function QrCode() {
                             <hr />
                         </div>
                         <div style={{width: "100%", height: "100%", alignContent: "center", textAlign: "center"}}>
-                            { id && (
+                            { usuario?.id && (
                                 <QRCodeCanvas
-                                    key={id}
-                                    value={`https://re-pray.vercel.app/forms/viewform/${id}`}
+                                    key={usuario.id}
+                                    value={`https://re-pray.vercel.app/forms/viewform/${usuario.id}`}
                                     size={225}
                                 />
                             )}

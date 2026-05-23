@@ -1,11 +1,40 @@
+import { useState, useEffect } from "react";
 import LiButton from "../components/LiButton";
 import ListTable from "../components/ListTable";
 import "../styles/pages.css";
 
 function Prays() {
+    
+    const usuarioStorage = localStorage.getItem("usuario");
+    const usuario = JSON.parse(usuarioStorage);
 
-    const info = [
-    ];
+    const [pedidos, setPedidos] = useState([]);
+
+    useEffect(() => {
+
+        async function carregarPedidos() {
+
+            try {
+
+                const response = await fetch(
+                    `http://127.0.0.1:5000/orders/pedidos/${usuario.id}`
+                );
+
+                const data = await response.json();
+
+                setPedidos(data);
+
+            } catch (err) {
+
+                console.error("Erro ao carregar cursos:", err);
+
+            }
+
+        }
+
+        carregarPedidos();
+
+    }, []);
 
     return (
         <div>
@@ -32,7 +61,7 @@ function Prays() {
                             <h2>Pedidos de Orações</h2>
                             <hr />
                         </div>
-                        <ListTable info={info} />
+                        <ListTable info={pedidos} />
                     </div>
                 </div>
             </main>

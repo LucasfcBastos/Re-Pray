@@ -5,9 +5,10 @@ function ListTable({ info }) {
         <table>
             <thead>
                 <tr>
-                    <th>Nome</th>
+                    <th>Curso</th>
                     <th>Pedido</th>
                     <th>Data</th>
+                    <th>Status</th>
                     <th>Ação</th>
                 </tr>
             </thead>
@@ -19,11 +20,12 @@ function ListTable({ info }) {
                         </td>
                     </tr>
                 )}
-                {info.map((item, index) => (
-                    <tr key={index}>
-                        <td>{item.name}</td>
-                        <td>{item.pray}</td>
-                        <td>{item.date}</td>
+                {info.map((item) => (
+                    <tr key={item.id}>
+                        <td>{item.cursos.nome}</td>
+                        <td>{item.descricao}</td>
+                        <td>{new Date(item.created_at).toLocaleDateString("pt-BR")}</td>
+                        <td>{item.status}</td>
                         <td><button className="on">Orar</button></td>
                     </tr>
                 ))}

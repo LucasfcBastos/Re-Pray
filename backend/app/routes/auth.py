@@ -78,11 +78,20 @@ def login():
         return jsonify({
             "erro": "Senha inválida"
         }), 401
+    
+    response = (
+        supabase
+        .table("instituicoes")
+        .select("id")
+        .eq("id_references", user["id_references"])
+        .execute()
+    )
 
+    info = response.data[0]
 
     # JWT
     token = create_access_token(
-        identity=str(user["id_references"])
+        identity=str(info["id"])
     )
 
 
@@ -91,7 +100,7 @@ def login():
         "token": token,
 
         "usuario": {
-            "id": user["id_references"]
+            "id": info["id"]
         }
 
     })
