@@ -23,6 +23,9 @@ function Prays() {
     // ===== Memória de Array
     const [pedidos, setPedidos] = useState([]);
 
+    // ===== Memória de Booleano
+    const [loading, setLoading] = useState(true);
+
     // ===== ENGRENAGENS =====
 
     // ===== Guarda-Chuva de Cursos
@@ -33,6 +36,9 @@ function Prays() {
 
             // ===== Rede de Proteção
             try {
+
+                // ===== Ativa o Carregamento
+                setLoading(true);
 
                 // ===== Busca dos Dados
                 const response = await fetch(`http://127.0.0.1:5000/orders/pedidos/${usuario.id}`);
@@ -45,6 +51,11 @@ function Prays() {
 
             } catch (err) {
                 console.error("Erro ao carregar pedidos:", err);
+            }finally {
+
+                // ===== Desativa o Carregamento
+                setLoading(false);
+
             }
 
         }
@@ -147,7 +158,7 @@ function Prays() {
                         </div>
 
                         {/* ===== Tabela */}
-                        <ListTable info={pedidos} atualizarStatus={atualizarStatus}/>
+                        <ListTable info={pedidos} loading={loading} atualizarStatus={atualizarStatus}/>
 
                     </div>
                 </div>

@@ -4,7 +4,7 @@
 import "../styles/table.css";
 
 // ===== FUNÇÃO PRINCIPAL =====
-function ListTable({ info, atualizarStatus }) {
+function ListTable({ info, loading, atualizarStatus }) {
 
     // ===== VISUALIZAÇÃO =====
     return (
@@ -26,9 +26,23 @@ function ListTable({ info, atualizarStatus }) {
 
                 {/* ===== Corpo da Tabela */}
                 <tbody>
+                    
+                    {loading && (
+                        <tr>
+                            <td
+                                colSpan="5"
+                                style={{
+                                    textAlign: "center",
+                                    padding: "1em"
+                                }}
+                            >
+                                Carregando pedidos...
+                            </td>
+                        </tr>
+                    )}
 
                     {/* ===== O Estado Vazio */}
-                    {info.length === 0 && (
+                    {!loading && info.length === 0 && (
                         <tr>
                             <td colSpan="5" style={{ textAlign: "center", padding: "1em" }} >
                                 Nenhum pedido de oração encontrado.
@@ -37,7 +51,7 @@ function ListTable({ info, atualizarStatus }) {
                     )}
 
                     {/* ===== A Lista de Pedidos */}
-                    {info.map((item) => (
+                    {!loading && info.map((item) => (
                         <tr key={item.id}>
 
                             {/* ===== As Células de Dados */}
