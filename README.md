@@ -35,7 +35,7 @@ cd frontend/
 
 cd desk-app-dash/
 
-npm install react-router-dom jspdf html2canvas node-machine-id
+npm install react-router-dom jspdf html2canvas node-machine-id @supabase/supabase-js
 
 npm install electron concurrently wait-on electron-builder qrcode.react --save-dev
 

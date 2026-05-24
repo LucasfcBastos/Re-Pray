@@ -2,6 +2,7 @@
 
 // ===== Importação Nomeada
 import { useState, useEffect } from "react";
+import { supabase } from "../services/supabase";
 
 // ===== Importação Padrão
 import LiButton from "../components/LiButton";
@@ -50,6 +51,22 @@ function Prays() {
 
         // ===== Chamada de Função
         carregarPedidos();
+
+        // ===== Canal de Comunicação
+        const channel = supabase.channel("pedidos-realtime")
+        
+            // Ouvinte de Eventos
+            .on("postgres_changes", { event: "*", schema: "public", table: "pedidos" }, () => {
+                carregarPedidos();
+            })
+        
+            // Apertando o Play
+            .subscribe();
+
+        // ===== limpeza
+        return () => {
+            supabase.removeChannel(channel);
+        };
 
     }, []);
 
