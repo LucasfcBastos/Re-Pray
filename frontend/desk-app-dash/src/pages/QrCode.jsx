@@ -1,19 +1,37 @@
+// ===== IMPORTAÇÃO =====
+
+// ===== Importação Nomeada
 import { QRCodeCanvas } from 'qrcode.react';
 import { generateQrPDF } from "../services/pdfGenerator";
+
+// ===== Importação Padrão
 import LiButton from "../components/LiButton";
+
+// ===== Importação de Efeito Colateral
 import "../styles/pages.css";
 
+// ===== FUNÇÃO PRINCIPAL =====
 function QrCode() {
-    
+
+    // ===== COMPONENTES =====
+
+    // ===== Banco do Navegador
     const usuarioStorage = localStorage.getItem("usuario");
     const usuario = JSON.parse(usuarioStorage);
 
+    // ===== VISUALIZAÇÃO =====
     return (
         <div>
+
+            {/* ===== Cabeçalho Superior */}
             <div className="bar-top line-bar">
                 <h1>RE-PRAY</h1>
             </div>
+
+            {/* ===== Barra lateral */}
             <aside>
+
+                {/* ===== Opções de Navegação */}
                 <ul style={{display: "flex", flexDirection: "column", gap: "1em"}}>
                     <LiButton href="/dashboard" styles="" children="Dashboard" />
                     <LiButton href="/prays" styles="" children="Pedidos" />
@@ -25,55 +43,66 @@ function QrCode() {
                         <LiButton href="/" styles="btn_logout" children="Sair" logout={true} />
                     </ul>
                 </div>
+
             </aside>
+
+            {/* ===== Campo Principal */}
             <main>
+
+                {/* ===== Campo Configuração */}
                 <div className='camp-limit'>
+
+                    {/* ===== Campo QR */}
                     <div className='camp-field full'>
+
+                        {/* ===== Titulo */}
                         <div>
                             <h2>Código QR</h2>
                             <hr />
                         </div>
+
+                        {/* ===== QR code */}
                         <div style={{width: "100%", height: "100%", alignContent: "center", textAlign: "center"}}>
                             { usuario?.id && (
-                                <QRCodeCanvas
-                                    key={usuario.id}
-                                    value={`https://re-pray.vercel.app/forms/viewform/${usuario.id}`}
-                                    size={225}
-                                />
+                                <QRCodeCanvas key={usuario.id} value={`https://re-pray.vercel.app/forms/viewform/${usuario.id}`} size={225} />
                             )}
                         </div>
+
                     </div>
+
+                    {/* ===== Campo PDF */}
                     <div className='camp-field pdf'>
+
+                        {/* ===== Titulo */}
                         <div>
                             <h2>Baixar PDF</h2>
                             <hr />
                         </div>
+
+                        {/* ===== Lista de Opções  */}
                         <div style={{width: "100%", height: "100%", alignContent: "center", textAlign: "center"}}>
-                            <div style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                gap: "1em"
-                            }}>
+                            <div style={{ display: "flex", flexDirection: "column", gap: "1em" }}>
                                 <button onClick={() => generateQrPDF(1)} className='on'>
                                     1 QR por folha
                                 </button>
-
                                 <button onClick={() => generateQrPDF(2)} className='on'>
                                     2 QR por folha
                                 </button>
-
                                 <button onClick={() => generateQrPDF(4)} className='on'>
                                     4 QR por folha
                                 </button>
-
                                 <button onClick={() => generateQrPDF(8)} className='on'>
                                     8 QR por folha
                                 </button>
                             </div>
                         </div>
+                        
                     </div>
+
                 </div>
+
             </main>
+
         </div>
     );
 }

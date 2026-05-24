@@ -1,16 +1,16 @@
 @font-face {
     font-family: "Intel One Mono - Bold";
-    src: url("../assets/font/IntelOneMono-Bold.ttf") format("truetype");
+    src: url("../assets/IntelOneMono-Bold.ttf") format("truetype");
 }
 
 @font-face {
     font-family: "Intel One Mono - SemiBold";
-    src: url("../assets/font/IntelOneMono-SemiBold.ttf") format("truetype");
+    src: url("../assets/IntelOneMono-SemiBold.ttf") format("truetype");
 }
 
 @font-face {
     font-family: "Intel One Mono - Regular";
-    src: url("../assets/font/IntelOneMono-Regular.ttf") format("truetype");
+    src: url("../assets/IntelOneMono-Regular.ttf") format("truetype");
 }
 
 :root {

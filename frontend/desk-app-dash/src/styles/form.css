@@ -45,7 +45,7 @@ button.off {
     padding: 1em;
     background-color: var(--color-line);
     border: 0px;
-    cursor: pointer;
+    cursor: default;
 }
 
 button.on {
