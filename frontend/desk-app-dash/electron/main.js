@@ -8,47 +8,57 @@ import machinePkg from "node-machine-id";
 
 // ===== COMPONENTES =====
 
-// ===== Nomear a Maquina
+// ===== Nomear a Máquina
 const { machineIdSync } = machinePkg;
 
 // ===== FUNÇÃO PRINCIPAL =====
 function createWindow() {
-  
-  // ===== Configuração de Janela
+
+  // ===== Configuração da Janela
   const win = new BrowserWindow({
-    width: 1400,
-    height: 900,
-    minHeight: 600,
+
+    // ===== Tamanho mínimo
     minWidth: 787,
+    minHeight: 600,
+
+    // ===== Configuração Web
     webPreferences: {
-      preload: new URL( "./preload.cjs", import.meta.url ).pathname,
+      preload: new URL("./preload.cjs", import.meta.url).pathname,
       contextIsolation: true,
       nodeIntegration: false,
     },
+
   });
+
+  // ===== Maximiza Janela
+  win.maximize();
+
+  // ===== Carrega Frontend React/Vite
   win.loadURL("http://localhost:5173");
 
 }
 
 // ===== GATILHOS =====
 
-// ===== Gatilho de Inicialização
+// ===== Inicialização do Electron
 app.whenReady().then(() => {
 
-  // Respondendo ao Chamado
-  ipcMain.handle( "get-device-id", () => {
+  // ===== Retornando ID do Dispositivo
+  ipcMain.handle("get-device-id", () => {
     return machineIdSync();
   });
 
-  // ===== Chamada de Função
+  // ===== Criando Janela
   createWindow();
 
 });
 
-// ===== Gatilho de Fechamento
+// ===== Fechamento do Aplicativo
 app.on("window-all-closed", () => {
 
-  // Gerenciamento do Aplicativo
-  if (process.platform !== "darwin") { app.quit(); }
+  // ===== Fecha no Windows/Linux
+  if (process.platform !== "darwin") {
+    app.quit();
+  }
 
 });

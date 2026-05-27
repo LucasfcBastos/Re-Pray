@@ -22,6 +22,13 @@ main {
     margin-bottom: 1.5em;
 }
 
+.camp-static {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1em;
+    margin-bottom: 1.5em;
+}
+
 .camp-field {
     background-color: var(--color-theme);
     padding: var(--numb-twenty-five);
