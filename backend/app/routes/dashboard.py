@@ -75,16 +75,16 @@ def rank(user_id):
                 ranking[id_curso] = 1
 
         # ===== Ordenando
-        top_5 = sorted(
+        top_12 = sorted(
             ranking.items(),
             key=lambda item: item[1],
             reverse=True
-        )[:5]
+        )[:12]
 
         resultado = []
 
         # ===== Buscando Nome do Curso
-        for id_curso, quantidade in top_5:
+        for id_curso, quantidade in top_12:
 
             curso_response = (
                 supabase
@@ -114,5 +114,142 @@ def rank(user_id):
     except Exception as e:
 
         print("ERRO RANKING:", e)
+
+        return jsonify([]), 500
+
+# ===== Ranking de Categorias =====
+@dashboard_bp.route("/categorias/<user_id>", methods=["GET"])
+def categorias(user_id):
+
+    print("ROTA NOVA FUNCIONANDO")
+
+    try:
+
+        # ===== Busca Pedidos
+        pedidos_response = (
+            supabase
+            .table("pedidos")
+            .select("descricao")
+            .eq("id_references", user_id)
+            .execute()
+        )
+
+        pedidos = pedidos_response.data or []
+
+        # ===== Categorias
+        categorias = {
+            "Saúde": 0,
+            "Família": 0,
+            "Financeiro": 0,
+            "Emocional": 0,
+            "Espiritual": 0,
+            "Trabalho": 0,
+            "Relacionamento": 0,
+            "Estudos": 0,
+            "Outros": 0
+        }
+
+        # ===== Classificação
+        for pedido in pedidos:
+
+            texto = pedido.get("descricao", "").lower()
+
+            if any(p in texto for p in [
+                "saúde",
+                "doente",
+                "cirurgia",
+                "hospital",
+                "câncer",
+                "enferm",
+                "dor"
+            ]):
+
+                categorias["Saúde"] += 1
+
+            elif any(p in texto for p in [
+                "mãe",
+                "pai",
+                "filho",
+                "família",
+                "irmão",
+                "irmã"
+            ]):
+
+                categorias["Família"] += 1
+
+            elif any(p in texto for p in [
+                "dinheiro",
+                "dívida",
+                "endividado",
+                "financeiro",
+                "conta"
+            ]):
+
+                categorias["Financeiro"] += 1
+
+            elif any(p in texto for p in [
+                "ansiedade",
+                "depressão",
+                "medo",
+                "emocional",
+                "triste"
+            ]):
+
+                categorias["Emocional"] += 1
+
+            elif any(p in texto for p in [
+                "oração",
+                "jesus",
+                "deus",
+                "fé",
+                "espiritual"
+            ]):
+
+                categorias["Espiritual"] += 1
+
+            elif any(p in texto for p in [
+                "emprego",
+                "trabalho",
+                "serviço"
+            ]):
+
+                categorias["Trabalho"] += 1
+
+            elif any(p in texto for p in [
+                "namoro",
+                "casamento",
+                "relacionamento"
+            ]):
+
+                categorias["Relacionamento"] += 1
+
+            elif any(p in texto for p in [
+                "faculdade",
+                "estudo",
+                "prova",
+                "enem"
+            ]):
+
+                categorias["Estudos"] += 1
+
+            else:
+
+                categorias["Outros"] += 1
+
+        # ===== Resultado
+        resultado = []
+
+        for nome, valor in categorias.items():
+
+            resultado.append({
+                "name": nome,
+                "value": valor
+            })
+
+        return jsonify(resultado), 200
+
+    except Exception as e:
+
+        print("ERRO CATEGORIAS:", e)
 
         return jsonify([]), 500

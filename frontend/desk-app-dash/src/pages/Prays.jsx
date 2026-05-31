@@ -157,8 +157,21 @@ function Prays() {
                             <hr />
                         </div>
 
+                        {loading && (
+                            <p
+                                style={{
+                                    textAlign: "center",
+                                    padding: "1em"
+                                }}
+                            >
+                                Carregando pedidos...
+                            </p>
+                        )}
+
                         {/* ===== Tabela */}
-                        <ListTable info={pedidos} loading={loading} atualizarStatus={atualizarStatus}/>
+                        {!loading && (
+                            <ListTable info={pedidos} atualizarStatus={atualizarStatus}/>
+                        )}
 
                     </div>
                 </div>
